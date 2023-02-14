@@ -16,7 +16,6 @@ afterAll(closeAll);
 
 // Dummy user for testing
 const mockUser = {
-  username: 'testuser',
   email: 'test@example.com',
   password: '12345',
 };

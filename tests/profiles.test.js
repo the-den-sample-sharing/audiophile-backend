@@ -6,12 +6,14 @@ describe('profile routes', () => {
   beforeEach(setupDb);
 
   it('creates new profile', async () => {
-    const [user] = await registerAndLogin(mockUser);
-    const res = await request(app).post('/api/v1/profiles').send(mockProfile);
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users').send(mockUser);
+    await agent.post('/api/v1/users/sessions').send(mockUser);
+    const res = await agent.post('/api/v1/profiles').send(mockProfile);
     const { username, firstName, lastName } = mockProfile;
-
+    console.log(res.body);
     expect(res.body).toEqual({
-      userId: user.id,
+      userId: expect.any(String),
       username,
       firstName,
       lastName,

@@ -13,8 +13,8 @@ CREATE TABLE users (
 );
 
 CREATE TABLE profiles (
-  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  user_id BIGINT NOT NULL,
+  
+  user_id BIGINT NOT NULL PRIMARY KEY,
   username VARCHAR,
   first_name VARCHAR,
   last_name VARCHAR,
@@ -30,7 +30,7 @@ CREATE TABLE profiles_sample_packs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   profile_id BIGINT,
   sample_pack_id BIGINT,
-  FOREIGN KEY (profile_id) REFERENCES profiles(id),
+  FOREIGN KEY (profile_id) REFERENCES profiles(user_id),
   FOREIGN KEY (sample_pack_id) REFERENCES sample_packs(id)
 );
 
