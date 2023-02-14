@@ -1,4 +1,4 @@
-const { setupDb, registerAndLogin, mockProfile, mockUser } = require('./utils');
+const { setupDb, mockProfile, mockUser } = require('./utils');
 const request = require('supertest');
 const app = require('../lib/app');
 
@@ -11,7 +11,6 @@ describe('profile routes', () => {
     await agent.post('/api/v1/users/sessions').send(mockUser);
     const res = await agent.post('/api/v1/profiles').send(mockProfile);
     const { username, firstName, lastName } = mockProfile;
-    console.log(res.body);
     expect(res.body).toEqual({
       userId: expect.any(String),
       username,
