@@ -13,7 +13,6 @@ CREATE TABLE users (
 );
 
 CREATE TABLE profiles (
-  
   user_id BIGINT NOT NULL PRIMARY KEY,
   username VARCHAR,
   first_name VARCHAR,
@@ -24,15 +23,14 @@ CREATE TABLE profiles (
 CREATE TABLE packs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name VARCHAR
-
 );
 
 CREATE TABLE samples (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   url VARCHAR,
-  profile_id BIGINT,
+  user_id BIGINT,
   pack_id BIGINT,
-  FOREIGN KEY (profile_id) REFERENCES profiles(user_id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (pack_id) REFERENCES packs(id)
 );
 
