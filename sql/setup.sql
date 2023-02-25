@@ -1,10 +1,10 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
 
-DROP TABLE IF EXISTS packs; 
-DROP TABLE IF EXISTS samples;
-DROP TABLE IF EXISTS profiles;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS packs cascade; 
+DROP TABLE IF EXISTS samples cascade;
+DROP TABLE IF EXISTS profiles cascade;
+DROP TABLE IF EXISTS users cascade;
 
 CREATE TABLE users (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,9 +14,10 @@ CREATE TABLE users (
 
 CREATE TABLE profiles (
   user_id BIGINT NOT NULL PRIMARY KEY,
-  username VARCHAR,
-  first_name VARCHAR,
-  last_name VARCHAR,
+  username VARCHAR NOT NULL,
+  first_name VARCHAR NOT NULL,
+  last_name VARCHAR NOT NULL,
+  bio VARCHAR,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
