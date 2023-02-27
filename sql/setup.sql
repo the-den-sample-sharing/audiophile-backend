@@ -18,6 +18,7 @@ CREATE TABLE profiles (
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
   bio VARCHAR,
+  avatar_url VARCHAR,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
