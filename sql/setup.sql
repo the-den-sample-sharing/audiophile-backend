@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS packs cascade;
 DROP TABLE IF EXISTS samples cascade;
 DROP TABLE IF EXISTS profiles cascade;
 DROP TABLE IF EXISTS users cascade;
+DROP TABLE IF EXISTS profile_avatars cascade;
 
 CREATE TABLE users (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -18,8 +19,14 @@ CREATE TABLE profiles (
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
   bio VARCHAR,
-  avatar_url VARCHAR,
   FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE profile_avatars (
+  profile_id BIGINT NOT NULL,
+  avatar_url VARCHAR,
+  FOREIGN KEY (profile_id) REFERENCES users(id)
+
 );
 
 CREATE TABLE packs (
@@ -39,18 +46,6 @@ CREATE TABLE samples (
 
 
 
--- INSERT INTO
---   users (email, password_hash)
--- VALUES
---   ('rio@example.com', 'notarealpasswordhash'),
---   ('kyle@example.com', 'notarealpasswordhash'),
---   ('grey@example.com', 'notarealpasswordhash');
 
--- INSERT INTO
---   profiles (user_id, username, first_name, last_name)
--- VALUES
---   (1, 'rio_username', 'Rio', 'Edwards' ),
---   (2, 'kyle_username', 'Kyle', 'McCall' ),
---   (3, 'grey_username', 'Grey', 'Whithers' );
 
 
