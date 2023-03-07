@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS packs cascade;
 DROP TABLE IF EXISTS samples cascade;
 DROP TABLE IF EXISTS profiles cascade;
 DROP TABLE IF EXISTS users cascade;
-DROP TABLE IF EXISTS profile_avatars cascade;
+DROP TABLE IF EXISTS avatars cascade;
 
 CREATE TABLE users (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -22,12 +22,16 @@ CREATE TABLE profiles (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE profile_avatars (
-  profile_id BIGINT NOT NULL,
-  avatar_url VARCHAR,
-  FOREIGN KEY (profile_id) REFERENCES users(id)
+CREATE TABLE avatars (
+  url VARCHAR,
+  profile_id BIGINT UNIQUE NOT NULL PRIMARY KEY,
+  FOREIGN KEY (profile_id) REFERENCES profiles(user_id)
 
 );
+
+
+
+
 
 CREATE TABLE packs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
